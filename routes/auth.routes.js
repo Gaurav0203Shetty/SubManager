@@ -13,3 +13,5 @@ authRouter.get('/sign-in', (req, res) => {
 authRouter.get('/sign-out', (req, res) => {
     res.send({ title: 'Sign Out' });
 })
+
+export default authRouter;
