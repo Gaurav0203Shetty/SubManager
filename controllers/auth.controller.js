@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 import { mongoose } from "mongoose"
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
@@ -81,5 +79,14 @@ export const signIn = async (req, res, next) => {
 }
 
 export const signOut = async (req, res, next) => {
-
+    try {
+        // In a stateless JWT authentication system, sign out is usually handled on the client side
+        // by deleting the token. Here we can just send a success response.
+        res.status(200).json({
+            success: true,
+            message: 'User signed out successfully'
+        });
+    } catch (error) {
+        next(error);
+    }
 }

@@ -29,7 +29,7 @@ const subscriptionSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ["entertainment", "utilities", "food", "health", "sports", "other"],
+        enum: ["entertainment", "utilities", "food", "health", "sports", "editing", "other"],
         default: "other",
         required: true
     },
@@ -68,7 +68,7 @@ const subscriptionSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 subscriptionSchema.pre('save', function (next) {
-    if (this.renewalDate) {
+    if (!this.renewalDate) {
         const renewalPeriods = {
             daily: 1,
             weekly: 7,      
@@ -76,7 +76,7 @@ subscriptionSchema.pre('save', function (next) {
             yearly: 365
         };
         this.renewalDate = new Date(this.startDate);
-        history.renewalDate.setDate(this.renewalDate.getDate() + renewalPeriods[this.frequency]);
+        this.renewalDate.setDate(this.renewalDate.getDate() + renewalPeriods[this.frequency]);
     }
     if (this.renewalDate < new Date()) {
         this.status = "expired";
