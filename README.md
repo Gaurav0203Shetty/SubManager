@@ -102,10 +102,3 @@ The server will start on the port specified in your environment configuration.
 4. Push to the branch (`git push origin feature/YourFeature`)
 5. Create a new Pull Request
 
-## License
-
-This project is licensed under the MIT License.
-
-## Contact
-
-For questions or support, open an issue on GitHub or contact the repository owner.
